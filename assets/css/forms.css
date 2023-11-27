@@ -1,0 +1,144 @@
+body {
+    background-image: url("../images/log-sign.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.container_form {
+    display: flex;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    background-image: url("../images/form.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin: 10%;
+    padding: 3%;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+}
+
+#img_form {
+    width: 600px;
+    height: fit-content;
+}
+#img_form1 {
+    width: 450px;
+    height: max-content;
+}
+
+.left-side,
+.right-side {
+    padding: 10px;
+}
+
+.left-side {
+    flex: 1;
+    text-align: center;
+    background-color: #1a181836;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+}
+
+.left-side h2 {
+    margin-top: 0;
+    color: #fff; /* Text color for left side */
+}
+
+.right-side {
+    flex: 1;
+}
+
+right-side h2 {
+    margin-top: 0;
+    color: #007bff; /* Text color for right side header */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label,
+input,
+button {
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+label {
+    color: #007bff; /* Text color for labels */
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #007bff; /* Border color for input fields */
+    border-radius: 5px;
+}
+
+/* Your existing CSS styles */
+.checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.checkbox input {
+    margin-right: 10px;
+}
+
+.container_form a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Add link hover effect */
+.container_form a:hover {
+    color: #0d0d0e;
+}
+
+.checkout {
+    max-width: 1805px;
+    width: 100%;
+    height: auto;
+    border: 2px solid rgba(29, 27, 27, 0.767);
+    /* border: solid red 2px; */
+}
+td,
+th {
+    padding: 2rem;
+    border: 2px solid black;
+    text-align: center;
+    font-size: 22px;
+}
+table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(125, 209, 209, 0.692);
+    align-items: center;
+    padding: 2rem 2rem 2rem 2rem; /* adjusted padding */
+    margin-bottom: 25px;
+    border: solid green 3px;
+    width: fit-content;
+}
