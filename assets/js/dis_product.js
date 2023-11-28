@@ -1,18 +1,21 @@
-let openShopping = document.querySelector('.shopping');
-let closeShopping = document.querySelector('.closeShopping');
-let list = document.querySelector('.list');
-let listCard = document.querySelector('.listCard');
-let body = document.querySelector('body');
-let total = document.querySelector('.total');
-let quantity = document.querySelector('.quantity');
+const openShopping = document.querySelector('.shopping');
+const closeShopping = document.querySelector('.closeShopping');
+const list = document.querySelector('.list');
+const listCard = document.querySelector('.listCard');
+const body = document.querySelector('body');
+const total = document.querySelector('.total');
+const quantity = document.querySelector('.quantity');
+let listCards = [];
+let count = 0;
+let totalPrice = 0;
 
 openShopping.addEventListener('click', () => {
     body.classList.add('active');
 });
+
 closeShopping.addEventListener('click', () => {
     body.classList.remove('active');
 });
-
 let products = [
     {
         id: 1,
@@ -69,52 +72,62 @@ let products = [
         price: 50
     }
 ];
-let listCards = [];
+function createProductItem(product, index) {
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('item');
+    newDiv.innerHTML = `
+        <img src="../assets/images/${product.image}" style="width: 300px; height: 300px;">
+        <div class="title">${product.name}</div>
+        <div class="price">&#8369;${product.price.toLocaleString()}
+        <button onclick="addToCart(${index})">Add To Cart</button>`;
+    list.appendChild(newDiv);
+}
 
 function initApp() {
     products.forEach((product, index) => {
-        let newDiv = document.createElement('div');
-        newDiv.classList.add('item');
-        newDiv.innerHTML = `
-            <img src="../assets/images/${product.image}" style="width: 300px; height: 300px;">
-            <div class="title">${product.name}</div>
-            <div class="price">&#8369;${product.price.toLocaleString()}
-            <button onclick="addToCart(${index})">Add To Cart</button>`;
-        list.appendChild(newDiv);
+        createProductItem(product, index);
     });
 }
 
 initApp();
 
 function addToCart(index) {
+    let userQuantity = parseInt(prompt('Enter quantity:'), 10) || 0;
+
     if (listCards[index] == null) {
         listCards[index] = JSON.parse(JSON.stringify(products[index]));
-        listCards[index].quantity = 1;
+        listCards[index].quantity = userQuantity || count; // Use user input or default to count
+
+        // Add the selected item to the session
+        addToSession(listCards[index]);
+    } else {
+        // If the quantity is already present in listCards, update it based on user input
+        listCards[index].quantity = userQuantity || count; // Use user input or default to count
+        updateSession();
     }
+
     reloadCard();
 }
 
 function reloadCard() {
     listCard.innerHTML = '';
-    let count = 0;
-    let totalPrice = 0;
+    totalPrice = 0;
+    count = 0;
 
     listCards.forEach((value, key) => {
         totalPrice += value.price * value.quantity;
         count += value.quantity;
 
         if (value != null) {
-            let newDiv = document.createElement('li');
+            const newDiv = document.createElement('li');
             newDiv.innerHTML = `
                 <div>
-                <img src="../assets/images/${value.image}" />
+                    <img src="../assets/images/${value.image}" />
                 </div>
                 <div>${value.name}</div>
                 <div>₱${(value.price * value.quantity).toLocaleString()}</div>
                 <div>
-                    <button onclick="changeQuantity(${key}, ${value.quantity - 1})">-</button>
-                    <div class="count">${value.quantity}</div>
-                    <button onclick="changeQuantity(${key}, ${value.quantity + 1})">+</button>
+                    <div id="count">${value.quantity}</div>
                 </div>`;
             listCard.appendChild(newDiv);
         }
@@ -128,11 +141,17 @@ function reloadCard() {
 }
 
 function changeQuantity(key, quantity) {
-    if (quantity == 0) {
+    if (quantity === 0) {
         delete listCards[key];
     } else {
         listCards[key].quantity = quantity;
         listCards[key].price = quantity * products[key].price;
     }
     reloadCard();
+}
+
+function addToSession(item) {
+    const cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
+    cartItems.push(item);
+    sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
 }

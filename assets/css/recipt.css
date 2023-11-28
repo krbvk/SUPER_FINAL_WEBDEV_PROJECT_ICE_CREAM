@@ -1,0 +1,63 @@
+.container_receipt {
+    background-color: white;
+    padding: 2rem;
+    margin: 5% auto;
+    border-radius: 8px;
+    width: 700px;
+    height: auto;
+    border: 2px solid black;
+}
+
+.container_receipt p {
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.container_receipt h2 {
+    margin-bottom: 10px;
+}
+
+.button-container {
+    text-align: center;
+    margin-bottom: 20%;
+}
+
+.button-container button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #e8bc0e;
+    color: #453e3b;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-container button:hover {
+    background-color: #ffd700;
+    color: #453e3b;
+}
+
+.logo img {
+    max-width: 100px;
+    margin-right: 10px;
+}
+p {
+    margin-top: 5%;
+    text-align: center;
+}
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    .container_receipt,
+    .container_receipt * {
+        visibility: visible;
+    }
+
+    .container_receipt {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}

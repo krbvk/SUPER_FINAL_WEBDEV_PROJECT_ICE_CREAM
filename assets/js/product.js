@@ -94,13 +94,20 @@ function initApp() {
 initApp();
 
 function addToCart(index) {
+    let userQuantity = parseInt(prompt('Enter quantity:'), 10) || 0;
+
     if (listCards[index] == null) {
         listCards[index] = JSON.parse(JSON.stringify(products[index]));
-        listCards[index].quantity = 1;
+        listCards[index].quantity = userQuantity || count; // Use user input or default to count
 
         // Add the selected item to the session
         addToSession(listCards[index]);
+    } else {
+        // If the quantity is already present in listCards, update it based on user input
+        listCards[index].quantity = userQuantity || count; // Use user input or default to count
+        updateSession();
     }
+
     reloadCard();
 }
 
@@ -122,9 +129,7 @@ function reloadCard() {
                 <div>${value.name}</div>
                 <div>₱${(value.price * value.quantity).toLocaleString()}</div>
                 <div>
-                    <button onclick="changeQuantity(${key}, ${value.quantity - 1})">-</button>
-                    <div class="count">${value.quantity}</div>
-                    <button onclick="changeQuantity(${key}, ${value.quantity + 1})">+</button>
+                    <div id="count">${value.quantity}</div>
                 </div>`;
             listCard.appendChild(newDiv);
         }
@@ -153,6 +158,4 @@ function addToSession(item) {
     sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
 }
 
-function goToSummary() {
-    window.location.href = 'summary.php';
-}
+
