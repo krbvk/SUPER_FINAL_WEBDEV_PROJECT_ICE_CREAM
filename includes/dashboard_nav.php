@@ -27,10 +27,10 @@ if (isset($_SESSION['username'])) {
 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link subActive" aria-current="page" href="../pages_main/dashboard_home.php">Home</a>
+                            <a class="nav-link subActive" aria-current="page" href="../pages/dashboard_home.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link subActive" href="../pages_main/dashboard_product.php">Product</a>
+                            <a class="nav-link subActive" href="../pages/dashboard_product.php">Product</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link subActive" href="#footer">Contact</a>

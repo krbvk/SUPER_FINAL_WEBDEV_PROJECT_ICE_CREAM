@@ -1,0 +1,66 @@
+body {
+    font-family: "Arial", sans-serif;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 10% auto;
+    padding: 5%;
+    background-color: #453e3b;
+    color: white;
+}
+
+.container h1 {
+    color: #e8bc0e;
+}
+
+.summaryList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.summaryList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.summaryList img {
+    width: 100px;
+    height: auto;
+    margin-left: 10px;
+}
+
+.totalPrice {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.cashInput {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.buttons_prod {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.buttons_prod button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #e8bc0e;
+    color: #453e3b;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttons_prod button:hover {
+    background-color: #ffd700;
+    color: #453e3b;
+}

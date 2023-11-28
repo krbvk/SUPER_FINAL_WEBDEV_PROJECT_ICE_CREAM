@@ -23,7 +23,7 @@ if (isset($_GET['username']) && isset($_GET['password'])) {
                 $_SESSION["username"] = $row["Username"];
                 $_SESSION["isAuthenticated"] = true;
 
-                header("Location: ../pages_main/dashboard_home.php");
+                header("Location: ../pages/dashboard_home.php");
                 exit();
             } else {
                 echo "Failed to log in";
