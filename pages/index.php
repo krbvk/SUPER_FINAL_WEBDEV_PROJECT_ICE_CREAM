@@ -27,7 +27,7 @@
             <div class="row align-items-center">
                 <h1 class="bg-info p-4 fs-1 text-center">Ice-Cream is The Best Medicine!!!</h1>
                 <div class="col-md-6">
-                    <img src="../assets/images/ice.jpeg" alt="ice" class="responsive-image">
+                    <img src="/assets/images/ice.jpeg" alt="ice" class="responsive-image">
                 </div>
 
                 <div class="col-md-6">
