@@ -17,7 +17,7 @@
     <header class=" text-bg-light p-2">
         <section class="row align-items-center justify-content-center">
             <div class="col-20 text-center">
-                <img src="/../assets/images/background.svg" alt="logo" class="img-fluid" />
+                <img src="../assets/images/background.svg" alt="logo" class="img-fluid" />
             </div>
         </section>
     </header>
@@ -27,7 +27,7 @@
             <div class="row align-items-center">
                 <h1 class="bg-info p-4 fs-1 text-center">Ice-Cream is The Best Medicine!!!</h1>
                 <div class="col-md-6">
-                    <img src="/../assets/images/ice.jpeg" alt="ice" class="responsive-image">
+                    <img src="../assets/images/ice.jpeg" alt="ice" class="responsive-image">
                 </div>
 
                 <div class="col-md-6">
