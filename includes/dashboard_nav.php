@@ -1,10 +1,10 @@
 <?php
-#session_start(); // Start the session
-#if (isset($_SESSION['username'])) {
-#    $username = $_SESSION['username'];
-#} else {
+session_start(); // Start the session
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+} else {
     $username = '';
-#}
+}
 ?>
 <header>
     <div class="container-fluid">
