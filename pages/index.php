@@ -17,7 +17,7 @@
     <header class=" text-bg-light p-2">
         <section class="row align-items-center justify-content-center">
             <div class="col-20 text-center">
-                <img src="assets/images/background.svg" alt="logo" class="img-fluid" />
+                <img src="/../assets/images/background.svg" alt="logo" class="img-fluid" />
             </div>
         </section>
     </header>
