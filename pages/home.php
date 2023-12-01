@@ -12,7 +12,7 @@
 
 <body>
 
-    <?php require '../includes/navbar.php' ?>
+    <?php include '../includes/navbar.php' ?>
 
     <header class=" text-bg-light p-2">
         <section class="row align-items-center justify-content-center">
