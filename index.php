@@ -4,5 +4,5 @@ function require_multi($files) {
     foreach($files as $file)
         require_once($file);
 }
-require_multi("pages/home.php","includes/footer.php","includes/navbar.php");
+require_multi("includes/navbar.php","pages/home.php","includes/footer.php",);
 ?>
