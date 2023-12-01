@@ -120,14 +120,63 @@ a:hover {
 
 /* body & footer */
 /* TODO BODY Styles */
-main {
-    flex: 1;
-    padding: 1rem;
+.main {
+    width: 1700px;
+    height: auto;
+    display: flex;
+    justify-content: center;
 }
-.bg-peach {
-    background-color: #ffdab9; /* Peach color code */
+.page1 {
+    background-image: url("../images/background.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 1700px;
+    height: 1100px;
 }
-
+.containerfont {
+    margin-top: 20%;
+    width: 1000px;
+    height: auto;
+    padding: 0px 96px 0px 357px;
+}
+.font1 {
+    color: #e8f5f5;
+    font-family: Otomanopee One;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+}
+.font2 {
+    color: #b87a41;
+    font-family: Otomanopee One;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+}
+.font3 {
+    display: flex;
+    color: #b87a41;
+    font-family: Otomanopee One;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+}
+.font4 {
+    color: #e8f5f5;
+    font-family: Otomanopee One;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+}
 /* ?Footer */
 footer {
     width: 100%;

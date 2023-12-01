@@ -17,7 +17,7 @@
         <div class="main-form">
             <div class="container_form">
                 <div class="left-side">
-                    <img src="../assets/images/mine.svg" id="img_form" alt="Image" />
+                    <img src="../assets/images/discount.png" id="img_form" alt="Image" />
                 </div>
                 <div class="right-side">
                     <img src="../assets/images/sign.svg" />
