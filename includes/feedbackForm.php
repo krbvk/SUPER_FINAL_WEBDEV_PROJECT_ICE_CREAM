@@ -3,7 +3,7 @@
 
 <button class="open-button btn btn-primary" onclick="openForm()">Feedback</button>
 <div class="form-popup text-bg-info" id="feedback-area">
-    <form action="../config/feedback.php" class="form-container p-4">
+    <form method= "get" action="../config/feedback.php" class="form-container p-4">
 
         <h3 class="mb-4 text-bg-light p-2 text-center" style="font-family:'Roboto';">Anonymous Feedback</h3>
 
@@ -11,7 +11,7 @@
             <label for="comments">
                 <h4 style="font-family:'Roboto'; color: #fff;"><b>Comments :</b></h4>
             </label>
-            <textarea class="form-control" name="feedback" id="feedback" rows="4" placeholder="Enter comments if any..."
+            <textarea class="form-control" name="comment" id="comment" rows="4" placeholder="Enter comments if any..."
                 autofocus>
             </textarea>
         </div>
