@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <?php include '../includes/dashboard_nav.php ' ?>
+    <?php include '/includes/dashboard_nav.php ' ?>
 
     <div class="container p-2">
         <div class="product-header">
