@@ -12,7 +12,7 @@ $password = sanitizeInput($_POST['password']);
 $confirm_password = sanitizeInput($_POST['confirm_password']);
 
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-$conn = new PDO("mysql:host=$host;dbname=$database;port=$port;tbname=$registration", $user, $password);
+$conn = new mysqli("mysql:host=$host;dbname=$database;port=$port");
 $errors = array();
 
 if (empty($fullname)) {
