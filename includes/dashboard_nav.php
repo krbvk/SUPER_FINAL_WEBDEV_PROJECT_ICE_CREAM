@@ -1,9 +1,11 @@
 <?php
 session_start(); // Start the session
+
+
 if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
+    $user = $_SESSION['username'];
 } else {
-    $username = '';
+    $user = '';
 }
 ?>
 <header>
@@ -23,7 +25,7 @@ if (isset($_SESSION['username'])) {
                     <ul class="navbar-nav ms-auto">
                         <li li class="nav-item">
                             <a style="color: white
-                            ;">Welcome, <?php echo $username; ?></a>
+                            ;">Welcome, <?php echo $user; ?></a>
 
                         </li>
                         <li class="nav-item">
