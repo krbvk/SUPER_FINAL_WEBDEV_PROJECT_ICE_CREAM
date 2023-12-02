@@ -9,7 +9,8 @@ $hostname = $dbparts['host'];
 $username = $dbparts['user'];
 $password = $dbparts['pass'];
 $database = ltrim($dbparts['path'],'/');
-$comments = sanitizeInput($_POST['comments']);
+
+$comments = ($_POST['comments']);
 
 $conn = new mysqli($hostname, $username, $password, $database);
 

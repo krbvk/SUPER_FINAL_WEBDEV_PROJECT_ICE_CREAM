@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../assets/css/feedBack.css">
+<link rel="stylesheet" href="../assets/css/feedback.css">
 
 
 <button class="open-button btn btn-primary" onclick="openForm()">Feedback</button>
