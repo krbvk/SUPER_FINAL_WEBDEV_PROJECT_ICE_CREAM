@@ -1,5 +1,5 @@
 <?php
-//db = random_fb
+
 session_start();
 
 $url = getenv('JAWSDB_URL');
@@ -9,23 +9,25 @@ $hostname = $dbparts['host'];
 $username = $dbparts['user'];
 $password = $dbparts['pass'];
 $database = ltrim($dbparts['path'],'/');
-$comment = sanitizeInput($_POST['comments']);
+$comments = sanitizeInput($_POST['comments']);
 
 $conn = new mysqli($hostname, $username, $password, $database);
 
 if ($conn->connect_error) {
     die("Connection Failed: " . $conn->connect_error);
-}
-// random_reviews table with column of comments
-$stmt = $conn->prepare("INSERT INTO tb_feedback (comments) VALUES (?)");
+} else {
+    $stmt = $conn->prepare("INSERT INTO tb_feedback (comments) VALUES (?)");
+    $stmt->bind_param("s", $comments);
+    $execval = $stmt->execute();
 
+    if ($execval){
+        $_SESSION['feedback'] = true;
+        header("Location: ../pages/dashboard_home.php");
+        exit();
+    } else {
+        die('Error posting values: ');
+    }
+    $stmt->close();
+    $conn->close();
+}
 
-if (!mysqli_query($conn, $sql)) {
-    die('Error posting values: ' . mysqli_connect_error());
-}
-// SUCCESS
-else {
-    // Redirect back to the home page with errors
-    header("Location: ../pages_main/dashboard_home.php");
-    exit();
-}
