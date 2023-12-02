@@ -1,6 +1,3 @@
-<?php
-
-?>
 <header>
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-dark">
@@ -37,23 +34,7 @@
         </nav>
     </div>
 </header>
-<script>
-    // Function to handle the header's sticky behavior
-    function handleStickyHeader() {
-        const header = document.querySelector("header");
-        if (window.scrollY > header.offsetHeight) {
-            header.classList.add("sticky");
-        } else {
-            header.classList.remove("sticky");
-        }
-    }
 
-    // Listen for scroll events and update the header's sticky behavior
-    window.addEventListener("scroll", handleStickyHeader);
-
-    // Initial call to set the initial state based on page load
-    handleStickyHeader();
-</script>
 <script>
     const currentLocation = window.location.href;
     const navLinks = document.querySelectorAll("nav a");
@@ -62,11 +43,5 @@
         if (link.href === currentLocation) {
             link.classList.add("active");
         }
-    }
-
-    function goToSummary() {
-        window.location.href = "../php/purchase_summary.php";
-
-
     }
 </script>
