@@ -11,14 +11,16 @@ $username = sanitizeInput($_POST['username']);
 $password = sanitizeInput($_POST['password']);
 $confirm_password = sanitizeInput($_POST['confirm_password']);
 
-$host = getenv("MYSQLHOST");
-$user = getenv("MYSQLUSER");
-$password = getenv("MYSQLPASSWORD");
-$database = getenv("MYSQLDATABASE");
-$port = getenv("MYSQLPORT");
+$url = getenv('JAWSDB_URL');
+$dbparts = parse_url($url);
+
+$hostname = $dbparts['host'];
+$username = $dbparts['user'];
+$password = $dbparts['pass'];
+$database = ltrim($dbparts['path'],'/');
 
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-$conn = new mysqli("mysql:host=$host;dbname=$database;port=$port");
+$conn = new mysqli($hostname, $username, $password, $database);
 $errors = array();
 
 if (empty($fullname)) {
