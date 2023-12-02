@@ -12,9 +12,7 @@ $password = sanitizeInput($_POST['password']);
 $confirm_password = sanitizeInput($_POST['confirm_password']);
 
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-$conn = new mysqli('localhost', 'root', '', 'db_registration');
-
+$conn = new mysqli('bv2rebwf6zzsv341.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', 'j2jymvjj5me7rm0j', '', 'tb_registration');
 $errors = array();
 
 if (empty($fullname)) {
