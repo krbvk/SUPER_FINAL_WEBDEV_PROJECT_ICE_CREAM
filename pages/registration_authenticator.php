@@ -7,31 +7,37 @@ function sanitizeInput($input)
 }
 
 $fullname = sanitizeInput($_POST['fullname']);
-$username = sanitizeInput($_POST['username']);
-$password = sanitizeInput($_POST['password']);
+$user = sanitizeInput($_POST['username']);
+$pass = sanitizeInput($_POST['password']);
 $confirm_password = sanitizeInput($_POST['confirm_password']);
 
-$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+$url = getenv('JAWSDB_URL');
+$dbparts = parse_url($url);
 
-$conn = new mysqli('localhost', 'root', '', 'db_registration');
+$hostname = $dbparts['host'];
+$username = $dbparts['user'];
+$password = $dbparts['pass'];
+$database = ltrim($dbparts['path'],'/');
 
+$hashed_password = password_hash($pass, PASSWORD_DEFAULT);
+$conn = new mysqli($hostname, $username, $password, $database);
 $errors = array();
 
 if (empty($fullname)) {
     $errors[] = "Fullname is required.";
 }
 
-if (empty($username)) {
+if (empty($user)) {
     $errors[] = "Username is required.";
 }
 
-if (empty($password)) {
+if (empty($pass)) {
     $errors[] = "Password is required.";
-} elseif (strlen($password) < 6) {
+} elseif (strlen($pass) < 6) {
     $errors[] = "Password must be at least 6 characters long.";
 }
 
-if ($password !== $confirm_password) {
+if ($pass !== $confirm_password) {
     $errors[] = "Passwords do not match.";
     $_SESSION['password_error'] = "Passwords do not match.";
 }
@@ -41,7 +47,7 @@ if (empty($errors)) {
         die("Connection Failed: " . $conn->connect_error);
     } else {
         $stmt = $conn->prepare("INSERT INTO tb_registration (fullname, username, password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $fullname, $username, $hashed_password);
+        $stmt->bind_param("sss", $fullname, $user, $hashed_password);
         $execval = $stmt->execute();
 
         if ($execval) {
