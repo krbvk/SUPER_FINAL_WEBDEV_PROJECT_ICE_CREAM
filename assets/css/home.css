@@ -120,12 +120,59 @@ a:hover {
 
 /* body & footer */
 /* TODO BODY Styles */
-main {
-    flex: 1;
-    padding: 1rem;
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.bg-peach {
-    background-color: #ffdab9; /* Peach color code */
+.page1 {
+    background-image: url("../images/background.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 1700px;
+    height: 1100px;
+}
+.containerfont {
+    width: 1900px;
+    height: auto;
+    padding: 300px 96px 0px 300px;
+}
+
+.font1,
+.font2,
+.font3,
+.font4 {
+    margin-top: 20%;
+    font-family: Otomanopee One;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.font1 {
+    color: #e8f5f5;
+    font-size: 60px;
+}
+
+.font2 {
+    color: #b87a41;
+    font-size: 60px;
+}
+
+.sweetness {
+    display: block;
+}
+
+.font3 {
+    color: #b87a41;
+    font-size: 30px;
+}
+
+.font4 {
+    color: #e8f5f5;
+    font-size: 30px;
 }
 
 /* ?Footer */

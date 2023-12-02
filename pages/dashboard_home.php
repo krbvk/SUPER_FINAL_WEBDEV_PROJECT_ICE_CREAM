@@ -1,12 +1,3 @@
-<?php
-session_start();
-
-if (isset($_SESSION['username'])) {
-    $user = $_SESSION['username'];
-} else {
-    $user = '';
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,13 +13,16 @@ if (isset($_SESSION['username'])) {
 
     <?php include '../includes/dashboard_nav.php' ?>
 
-    <header class="text-bg-light p-1">
-        <section class="row align-items-center justify-content-center">
-            <div class="col-20 text-center">
-                <img src="../assets/images/background.svg" alt="logo" class="img-fluid" />
+    <div class="main">
+        <div class="page1">
+            <div class="containerfont">
+                <span class="font1">indu</span><span class="font2">lge in the </span>
+                <div class="sweetness">
+                    <span class="font3">sweetness of</span><span class="font4">life one scoop at a time</span>
+                </div>
             </div>
-        </section>
-    </header>
+        </div>
+    </div>
 
     <?php include '../includes/footer.php'; ?>
 
