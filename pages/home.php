@@ -13,6 +13,7 @@
 <body>
 
     <?php include '../includes/navbar.php'; ?>
+
     <div class="main">
         <div class="page1">
             <div class="containerfont">
@@ -23,8 +24,6 @@
             </div>
         </div>
     </div>
-
-
 
     <?php include '../includes/footer.php'; ?>
 
