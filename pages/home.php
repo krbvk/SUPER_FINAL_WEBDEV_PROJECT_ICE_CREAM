@@ -13,12 +13,13 @@
 <body>
 
     <?php include '../includes/navbar.php'; ?>
-
-    <div class="page1">
-        <div class="containerfont">
-            <span class="font1">indu</span><span class="font2">lge in the </span>
-            <div class="sweetness">
-                <span class="font3">sweetness of</span><span class="font4">life one scoop at a time</span>
+    <div class="main">
+        <div class="page1">
+            <div class="containerfont">
+                <span class="font1">indu</span><span class="font2">lge in the </span>
+                <div class="sweetness">
+                    <span class="font3">sweetness of</span><span class="font4">life one scoop at a time</span>
+                </div>
             </div>
         </div>
     </div>
