@@ -6,6 +6,8 @@ function sanitizeInput($input)
     return htmlspecialchars(trim($input));
 }
 
+$comment = sanitizeInput($_POST['comment']);
+
 $url = getenv('JAWSDB_URL');
 $dbparts = parse_url($url);
 
@@ -14,14 +16,12 @@ $username = $dbparts['user'];
 $password = $dbparts['pass'];
 $database = ltrim($dbparts['path'],'/');
 
-$comment = sanitizeInput($_POST['comments']);
-
 $conn = new mysqli($hostname, $username, $password, $database);
 
 if ($conn->connect_error) {
     die("Connection Failed: " . $conn->connect_error);
 } else {
-    $stmt = $conn->prepare("INSERT INTO tb_feedback (comments) VALUES (?)");
+    $stmt = $conn->prepare("INSERT INTO tb_feedback (comment) VALUES (?)");
     $stmt->bind_param("s", $comment);
     $execval = $stmt->execute();
 
