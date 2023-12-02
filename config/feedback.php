@@ -1,6 +1,6 @@
 <?php
 //db = random_fb
-$conn = mysqli_connect("localhost", "root", "", "db_review");
+$conn = mysqli_connect("localhost", "root", "", "db_regist");
 if (!$conn) {
     die("Could not connect: " . mysqli_connect_error());
 }
