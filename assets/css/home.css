@@ -120,11 +120,9 @@ a:hover {
 
 /* body & footer */
 /* TODO BODY Styles */
-
-.main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+main {
+    flex: 1;
+    padding: 1rem;
 }
 .page1 {
     background-image: url("../images/background.svg");
