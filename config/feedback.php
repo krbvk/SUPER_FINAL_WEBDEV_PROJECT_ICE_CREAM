@@ -1,5 +1,6 @@
 <?php
 //db = random_fb
+session_start();
 
 $url = getenv('JAWSDB_URL');
 $dbparts = parse_url($url);
@@ -8,15 +9,16 @@ $hostname = $dbparts['host'];
 $username = $dbparts['user'];
 $password = $dbparts['pass'];
 $database = ltrim($dbparts['path'],'/');
+$comment = sanitizeInput($_POST['comments']);
 
 $conn = new mysqli($hostname, $username, $password, $database);
-if (!$conn) {
-    die("Could not connect: " . mysqli_connect_error());
+
+if ($conn->connect_error) {
+    die("Connection Failed: " . $conn->connect_error);
 }
 // random_reviews table with column of comments
-$sql = "INSERT INTO tb_feedback VALUES
+$stmt = $conn->prepare("INSERT INTO tb_feedback (comments) VALUES (?)");
 
-('$_POST[comments]')";
 
 if (!mysqli_query($conn, $sql)) {
     die('Error posting values: ' . mysqli_connect_error());
