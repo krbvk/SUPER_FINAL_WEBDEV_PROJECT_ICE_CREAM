@@ -11,13 +11,8 @@ $database = ltrim($dbparts['path'],'/');
 
 $conn = new mysqli($hostname, $username, $password, $database);
 
-if (isset($_GET['username'])) {
-    $query = mysql_query("SELECT * FROM tb_registration", $conn);
-    $user = $_GET['username'];
-} else {
-    $user = '';
-}
-
+$sql = $conn->prepare("SELECT * FROM tb_registration WHERE Username = ?");
+$result = $conn->query($sql);
 
 ?>
 <header>
@@ -38,7 +33,7 @@ if (isset($_GET['username'])) {
                     <ul class="navbar-nav ms-auto">
                         <li li class="nav-item">
                             <a style="color: white
-                            ;">Welcome, <?php echo $user; ?></a>
+                            ;">Welcome, <?php while($row = $result->fetch_assoc()) echo $row["username"] ?></a>
 
                         </li>
                         <li class="nav-item">
