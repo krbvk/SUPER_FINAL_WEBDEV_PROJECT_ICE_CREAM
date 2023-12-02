@@ -9,7 +9,7 @@ mysqli_select_db($conn, "db_review");
 
 
 // random_reviews table with column of comments
-$sql = "INSERT INTO random_reviews VALUES
+$sql = "INSERT INTO tb_feedback VALUES
 
 ('$_POST[comments]')";
 

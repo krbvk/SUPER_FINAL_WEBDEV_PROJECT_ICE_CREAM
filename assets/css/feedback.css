@@ -1,0 +1,25 @@
+.form-popup {
+  max-width: 450px;
+  display: none;
+  position: fixed;
+  bottom: -35%; /* Initially off-screen */
+  right: 0; /* Position from the right side */
+  transform: translateY(100%); /* Initially hidden off the screen */
+  width: 60%; /* Adjust width as needed */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+  animation: fadeInFromBottom 0.5s ease-out forwards; /* Forward animation to retain final state */
+}
+
+@keyframes fadeInFromBottom {
+  from {
+    opacity: 0;
+    bottom: -35%; /* Start from bottom, adjust as needed */
+    transform: translateY(100%); /* Start off-screen */
+  }
+  to {
+    opacity: 1;
+    bottom: 0; /* Move to the top */
+    transform: translateY(0); /* Slide in from the bottom to top */
+  }
+}
