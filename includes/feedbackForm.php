@@ -6,7 +6,7 @@
     <form method="get" action="../config/feedback.php" class="form-container p-4">
         <h3 class="mb-4 text-bg-light p-2 text-center" style="font-family:'Roboto';">Anonymous Feedback</h3>
         <div class="form-group">
-            <label for="comments">
+            <label for="comment">
                 <h4 style="font-family:'Roboto'; color: #fff;"><b>Comments :</b></h4>
             </label>
             <textarea class="form-control" name="comment" id="comment" rows="4" placeholder="Enter comments if any..."
