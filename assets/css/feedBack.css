@@ -1,0 +1,23 @@
+.form-popup {
+  max-width: 500px;
+  display: none;
+  position: fixed;
+  bottom: -35%; /* Initially off-screen */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%; /* Adjust width as needed */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+  animation: fadeInCenter 0.5s ease-out forwards; /* Forward animation to retain final state */
+}
+
+@keyframes fadeInCenter {
+  from {
+    opacity: 0;
+    bottom: -35%; /* Start from bottom, adjust as needed */
+  }
+  to {
+    opacity: 1;
+    bottom: 50%; /* Move to the center */
+  }
+}
