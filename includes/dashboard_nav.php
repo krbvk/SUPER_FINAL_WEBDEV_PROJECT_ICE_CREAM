@@ -1,19 +1,11 @@
 <?php
 session_start(); // Start the session
 
-$url = getenv('JAWSDB_URL');
-$dbparts = parse_url($url);
-
-$hostname = $dbparts['host'];
-$username = $dbparts['user'];
-$password = $dbparts['pass'];
-$database = ltrim($dbparts['path'],'/');
-
-$conn = new mysqli($hostname, $username, $password, $database);
-
-$sql = $conn->prepare("SELECT * FROM tb_registration WHERE Username = ?");
-$result = $conn->query($sql);
-
+if (isset($_SESSION['username'])) {
+    $user = $_SESSION['username'];
+} else {
+    $user = '';
+}
 ?>
 <header>
     <div class="container-fluid">
@@ -33,7 +25,7 @@ $result = $conn->query($sql);
                     <ul class="navbar-nav ms-auto">
                         <li li class="nav-item">
                             <a style="color: white
-                            ;">Welcome, <?php while($row = $result->fetch_assoc()) echo $row["username"] ?></a>
+                            ;">Welcome, <?php echo $user ?></a>
 
                         </li>
                         <li class="nav-item">
