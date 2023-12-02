@@ -21,7 +21,7 @@ $conn = new mysqli($hostname, $username, $password, $database);
 if ($conn->connect_error) {
     die("Connection Failed: " . $conn->connect_error);
 } else {
-    $stmt = $conn->prepare("INSERT INTO tb_feedback (comment) VALUES (?)");
+    $stmt = $conn->prepare("INSERT INTO tb_feedbacks (comment) VALUES (?)");
     $stmt->bind_param("s", $comment);
     $execval = $stmt->execute();
 
