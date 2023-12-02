@@ -11,9 +11,9 @@ $database = ltrim($dbparts['path'],'/');
 
 $conn = new mysqli($hostname, $username, $password, $database);
 
-if (isset($_SESSION['username'])) {
+if (isset($_GET['username'])) {
     $query = mysql_query("SELECT * FROM tb_registration", $conn);
-    $user = $_SESSION['username'];
+    $user = $_GET['username'];
 } else {
     $user = '';
 }
