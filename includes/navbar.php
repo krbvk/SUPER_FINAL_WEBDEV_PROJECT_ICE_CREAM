@@ -1,11 +1,11 @@
 <?php
 
- ?>
+?>
 <header>
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand">
                     <div class="logo">
                         <img src="../assets/images/logo.png" alt="Logo">
                         <span id="title">Atelier De Natsu</span>
