@@ -1,16 +1,6 @@
 <?php
 session_start(); // Start the session
 
-$url = getenv('JAWSDB_URL');
-$dbparts = parse_url($url);
-
-$hostname = $dbparts['host'];
-$username = $dbparts['user'];
-$password = $dbparts['pass'];
-$database = ltrim($dbparts['path'],'/');
-
-$conn = new mysqli($hostname, $username, $password, $database);
-
 if (isset($_SESSION['username'])) {
     $user = $_SESSION['username'];
 } else {
