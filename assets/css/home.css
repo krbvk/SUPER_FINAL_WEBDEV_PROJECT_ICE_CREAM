@@ -1,3 +1,6 @@
+body {
+    overflow-x: hidden;
+}
 /* ! Navigation */
 #title {
     font-family: "Irish Grover", cursive;
