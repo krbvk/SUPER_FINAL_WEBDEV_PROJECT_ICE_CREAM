@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="../assets/css/feedBack.css">
-<button class="open-button btn btn-primary" onclick="openForm()">Feedback Form</button>
+<button class="open-button btn btn-primary" onclick="openForm()">Feedback</button>
 <div class="form-popup text-bg-info" id="feedback-area">
     <form action="../config/feedback.php" class="form-container p-4">
 
