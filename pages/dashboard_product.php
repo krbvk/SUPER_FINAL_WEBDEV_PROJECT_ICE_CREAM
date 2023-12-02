@@ -49,7 +49,7 @@
             let newDiv = document.createElement('div');
             newDiv.classList.add('item');
             newDiv.innerHTML = `
-                    <img src="../assets/images/${product.image}" style="width: 300px; height: 300px;">
+                    <img src="../assets/images/${product.image}style="width: 300px; height: 300px;">
                     <div class="title">${product.name}</div>
                     <div class="price">&#8369;${product.price.toLocaleString()}</div>
                     <button onclick="addToCart(${index})">Add To Cart</button>`;
