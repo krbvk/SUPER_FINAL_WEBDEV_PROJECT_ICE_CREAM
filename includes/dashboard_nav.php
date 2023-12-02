@@ -11,13 +11,12 @@ $database = ltrim($dbparts['path'],'/');
 
 $conn = new mysqli($hostname, $username, $password, $database);
 
-while($row = mysqli_fetch_assoc($result)) {
 if (isset($_SESSION['username'])) {
     $query = mysql_query("SELECT * FROM tb_registration", $conn);
     $user = $_SESSION['username'];
 } else {
     $user = '';
-} }
+}
 
 
 ?>
@@ -39,7 +38,7 @@ if (isset($_SESSION['username'])) {
                     <ul class="navbar-nav ms-auto">
                         <li li class="nav-item">
                             <a style="color: white
-                            ;">Welcome, <?php echo $row['username']; ?></a>
+                            ;">Welcome, <?php echo $user; ?></a>
 
                         </li>
                         <li class="nav-item">
