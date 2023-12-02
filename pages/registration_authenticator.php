@@ -11,6 +11,12 @@ $username = sanitizeInput($_POST['username']);
 $password = sanitizeInput($_POST['password']);
 $confirm_password = sanitizeInput($_POST['confirm_password']);
 
+$host = getenv("MYSQLHOST");
+$user = getenv("MYSQLUSER");
+$password = getenv("MYSQLPASSWORD");
+$database = getenv("MYSQLDATABASE");
+$port = getenv("MYSQLPORT");
+
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 $conn = new mysqli("mysql:host=$host;dbname=$database;port=$port");
 $errors = array();
