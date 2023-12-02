@@ -1,13 +1,18 @@
 <?php
 //db = random_fb
-$conn = mysqli_connect("localhost", "root", "", "db_regist");
+
+$url = getenv('JAWSDB_URL');
+$dbparts = parse_url($url);
+
+$hostname = $dbparts['host'];
+$username = $dbparts['user'];
+$password = $dbparts['pass'];
+$database = ltrim($dbparts['path'],'/');
+
+$conn = new mysqli($hostname, $username, $password, $database);
 if (!$conn) {
     die("Could not connect: " . mysqli_connect_error());
 }
-
-mysqli_select_db($conn, "db_review");
-
-
 // random_reviews table with column of comments
 $sql = "INSERT INTO tb_feedback VALUES
 
