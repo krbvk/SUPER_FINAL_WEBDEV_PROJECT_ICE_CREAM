@@ -11,13 +11,14 @@ $database = ltrim($dbparts['path'],'/');
 
 $conn = new mysqli($hostname, $username, $password, $database);
 
-while($row = mysqli_fetch_assoc($result))
+while($row = mysqli_fetch_assoc($result)) {
 if (isset($_SESSION['username'])) {
     $query = mysql_query("SELECT * FROM tb_registration", $conn);
     $user = $_SESSION['username'];
 } else {
     $user = '';
-}
+} }
+
 
 ?>
 <header>
