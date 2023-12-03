@@ -94,7 +94,7 @@
 
         function orderAgain() {
             sessionStorage.removeItem('cartItems');
-            window.location.href = '../pages/dashboard_product.php';
+            window.location.href = 'dashboard_product.php';
         }
     </script>
 

@@ -62,7 +62,7 @@
 
     function goToSummary() {
         localStorage.setItem('cartItems', JSON.stringify(listCards));
-        window.location.href = 'summary.php';
+        window.location.href = 'dashboard_summary.php';
     }
     </script>
 
