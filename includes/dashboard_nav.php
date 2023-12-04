@@ -21,11 +21,8 @@ if (isset($_GET['username'])) {
         $stmt_result = $stmt->get_result();
         if ($stmt_result->num_rows > 0) {
             $row = $stmt_result->fetch_assoc();
-            $isVerified = password_verify($pass, $row['password']);
             if ($isVerified){
-                $_SESSION["User_ID"] = $row["User_ID"];
                 $_SESSION["username"] = $row["username"];
-                $_SESSION["isAuthenticated"] = true;
             }
     }
 }
@@ -50,8 +47,8 @@ if (isset($_GET['username'])) {
                         <li li class="nav-item">
                             <a style="color: white
                             ;">Welcome, <?php 
-                            $stmt = $conn->prepare("SELECT * FROM tb_registration WHERE Username = ?");
-                            while ($row = mysql_fetch_array($conn)) 
+                            $query->prepare("SELECT * FROM tb_registration WHERE Username = ?");
+                            while ($row = mysql_fetch_array($query)) 
                             echo $row["username"];
                         ?></a>
 
