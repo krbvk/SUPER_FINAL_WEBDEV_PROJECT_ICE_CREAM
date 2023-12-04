@@ -49,7 +49,11 @@ if (isset($_GET['username'])) {
                     <ul class="navbar-nav ms-auto">
                         <li li class="nav-item">
                             <a style="color: white
-                            ;">Welcome, <?php echo $row["username"] ?></a>
+                            ;">Welcome, <?php 
+                            $stmt = $conn->prepare("SELECT * FROM tb_registration WHERE Username = ?");
+                            while ($row = mysql_fetch_array($conn)) 
+                            echo $row["username"];
+                        ?></a>
 
                         </li>
                         <li class="nav-item">
