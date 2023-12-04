@@ -21,6 +21,11 @@
                 <div class="right-side">
                     <img src="../assets/images/sign.svg" />
                     <h2 style="color: white; text-align: center">Log in</h2>
+                    <center>
+                        <p style="color: white;">FAILED LOG IN. Username or password is Incorrect.</p>
+                        <p><a href="../pages/login.php">Try to log in again Click Here...</a></p>
+                    </center>
+
 
 
                 </div>

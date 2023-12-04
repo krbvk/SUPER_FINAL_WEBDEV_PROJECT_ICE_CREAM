@@ -17,7 +17,7 @@ $dbparts = parse_url($url);
 $hostname = $dbparts['host'];
 $username = $dbparts['user'];
 $password = $dbparts['pass'];
-$database = ltrim($dbparts['path'],'/');
+$database = ltrim($dbparts['path'], '/');
 
 $hashed_password = password_hash($pass, PASSWORD_DEFAULT);
 $conn = new mysqli($hostname, $username, $password, $database);
@@ -55,7 +55,7 @@ if (empty($errors)) {
             header("Location: registration_success.php");
             exit();
         } else {
-            $_SESSION['registration_error'] = "Error during registration. Please try again later.";
+            $_SESSION['registration_error'] = "Error during registration";
         }
 
         $stmt->close();

@@ -7,12 +7,12 @@ $dbparts = parse_url($url);
 $hostname = $dbparts['host'];
 $username = $dbparts['user'];
 $password = $dbparts['pass'];
-$database = ltrim($dbparts['path'],'/');
+$database = ltrim($dbparts['path'], '/');
 
 if (isset($_GET['username']) && isset($_GET['password'])) {
     $user = $_GET['username'];
     $pass = $_GET['password'];
-    
+
     $conn = new mysqli($hostname, $username, $password, $database);
     if ($conn->connect_error) {
         die("Failed to Log In: " . $conn->connect_error);
@@ -34,15 +34,18 @@ if (isset($_GET['username']) && isset($_GET['password'])) {
                 header("Location: ../pages/dashboard_home.php");
                 exit();
             } else {
-                echo "Failed to log in";
+                header("Location: ../pages/failed_login.php");
+                exit();
             }
         } else {
-            echo "Failed to log in";
+            header("Location: ../pages/failed_login.php");
+            exit();
         }
 
         $stmt->close();
         $conn->close();
     }
 } else {
-    echo "Invalid username or password";
+    header("Location: ../pages/failed_login.php");
+    exit();
 }

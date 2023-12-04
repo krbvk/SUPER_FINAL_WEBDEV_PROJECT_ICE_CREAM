@@ -22,9 +22,13 @@
                 </div>
                 <div class="right-side">
                     <img src="../assets/images/sign.svg" />
-                    <h2>Registration Error</h2>
-                    <p><?php echo $_SESSION['registration_error'] ?? 'An unknown error occurred during registration.'; ?></p>
-                    <p><a href="../pages/register.php">Go back to registration page</a></p>
+                    <center>
+
+
+                        <p style="color: white;"><?php echo $_SESSION['registration_error'] ?? 'Password does not match confirm password. Pls try again'; ?></p>
+                        <p style="color: white;"><a href="../pages/register.php">Go back to registration page Click here...</a></p>
+                    </center>
+
                 </div>
             </div>
         </div>
