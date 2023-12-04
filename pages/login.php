@@ -27,10 +27,6 @@
                         <input type="text" id="username" name="username" required />
                         <label for="password" style="color: white">Password:</label>
                         <input type="password" id="password" name="password" required />
-                        <div class="checkbox">
-                            <input type="checkbox" id="privacy" name="privacy" required />
-                            <label style="text-align: center; color: white" for="privacy">I agree to the <a href="../pages/dataPriv.php">data privacy terms</a></label>
-                        </div>
                         <button type="submit">Login</button>
                         <p style="text-align: center">
                             <a href="../pages/register.php">Don't have an account? sign up here</a>
