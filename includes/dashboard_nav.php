@@ -1,21 +1,4 @@
-<?php
-session_start(); // Start the session
 
-$url = getenv('JAWSDB_URL');
-$dbparts = parse_url($url);
-
-$hostname = $dbparts['host'];
-$username = $dbparts['user'];
-$password = $dbparts['pass'];
-$database = ltrim($dbparts['path'],'/');
-
-$conn = new mysqli($hostname, $username, $password, $database);
-if (isset($_SESSION['username'])) {
-    $user = $_SESSION['username'];
-} else {
-    $user = '';
-}
-?>
 <header>
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-dark">
@@ -34,8 +17,34 @@ if (isset($_SESSION['username'])) {
                     <ul class="navbar-nav ms-auto">
                         <li li class="nav-item">
                             <a style="color: white
-                            ;">Welcome, <?php echo $user ?></a>
+                            ;">Welcome, 
+                            <?php 
+                            session_start(); // Start the session
+                            $dbparts = parse_url($url);
 
+                            $hostname = $dbparts['host'];
+                            $username = $dbparts['user'];
+                            $password = $dbparts['pass'];
+                            $database = ltrim($dbparts['path'],'/');
+
+                            if (isset($_GET['username'])) {
+                            $user = $_GET['username'];
+                            $conn = new mysqli($hostname, $username, $password, $database);
+                               if ($conn->connect_error) {
+                                  die("User not Logged in " . $conn->connect_error);
+                                  } else {
+                                    $stmt = $conn->prepare("SELECT * FROM tb_registration WHERE Username = ?");
+                                    $stmt->bind_param("s", $user);
+                                    $stmt->execute();
+                                    $stmt_result = $stmt->get_result();
+                                     if ($stmt_result->num_rows > 0) {
+                                        $row = $stmt_result->fetch_assoc();
+                                         if ($isVerified){
+                                            $_SESSION["username"] = $row["Username"];
+                                            }
+                                             }
+                                               }} 
+                                                 echo $row["Username"] ?></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link subActive" aria-current="page"
