@@ -46,16 +46,7 @@ if (isset($_GET['username'])) {
                     <ul class="navbar-nav ms-auto">
                         <li li class="nav-item">
                             <a style="color: white
-                            ;">Welcome, <?php 
-                            $stmt = $conn->prepare("SELECT * FROM tb_registration WHERE Username = ?");
-                            $stmt_result = $stmt->get_result();
-                            if ($stmt_result->num_rows > 0) {
-                                $row = $stmt_result->fetch_assoc();
-                            }
-                            while ($row = mysql_fetch_array($stmt)) 
-                            echo $row["username"];
-                        ?></a>
-
+                            ;">Welcome, <?php echo $row["username"]; ?></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link subActive" aria-current="page"
