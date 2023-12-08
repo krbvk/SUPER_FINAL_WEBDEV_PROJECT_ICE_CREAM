@@ -18,7 +18,7 @@
 <body>
     <?php
     include '../includes/navbar.php';
-
+    
     $cashAmount = isset($_GET['cashAmount']) ? $_GET['cashAmount'] : '';
     $totalAmount = isset($_GET['totalAmount']) ? $_GET['totalAmount'] : '';
     $productNames = isset($_GET['product']) ? $_GET['product'] : [];
@@ -32,6 +32,7 @@
                 <img src="../assets/images/logo.png" alt="Logo">
                 <span id="title" style="color: black;">Atelier De Natsu</span>
             </div>
+            <form method="POST" action="../config/receipt.php">
             <h1>Receipt</h1>
             <table>
                 <tr>
@@ -54,7 +55,7 @@
                 ?>
             </table>
 
-            <h2>Product Details:</h2>
+            <h2>Product Details:</h2> 
             <table>
                 <?php
 
@@ -77,6 +78,7 @@
                 }
                 ?>
             </table>
+            </form>
             <?php
             date_default_timezone_set('Asia/Manila');
             ?>
