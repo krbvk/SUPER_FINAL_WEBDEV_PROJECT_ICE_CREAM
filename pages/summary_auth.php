@@ -12,7 +12,6 @@ $errors = array();
 try {
     $conn = new mysqli($hostname, $username, $password, $database);
 
-
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         // Get the parameters from the URL
         $cashAmount = isset($_GET['cashAmount']) ? floatval($_GET['cashAmount']) : 0;
@@ -31,14 +30,11 @@ try {
                 $total = floatval($_GET['total'][$i]);
 
                 // Store product information in the database
-                $stmt = $conn->prepare("INSERT INTO tb_receipt (product_name, price, quantity, total) VALUES (:productName, :price, :quantity, :total)");
-                $stmt->bind_param(':productName', $productName);
-                $stmt->bind_param(':price', $price);
-                $stmt->bind_param(':quantity', $quantity);
-                $stmt->bind_param(':total', $total);
+                $stmt = $conn->prepare("INSERT INTO tb_receipt (product_name, price, quantity, total) VALUES (?, ?, ?, ?)");
+                $stmt->bind_param('ssdd', $productName, $price, $quantity, $total);
                 $stmt->execute();
 
-                // Store product information in an array    
+                // Store product information in an array
                 $products[] = [
                     'productName' => $productName,
                     'price' => $price,
@@ -54,6 +50,6 @@ try {
     } else {
         echo "<p>Invalid request method. Please try again.</p>";
     }
-} catch (PDOException $e) {
+} catch (Exception $e) {
     echo "Connection failed: " . $e->getMessage();
 }
