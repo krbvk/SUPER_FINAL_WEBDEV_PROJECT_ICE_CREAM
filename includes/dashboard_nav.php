@@ -15,7 +15,7 @@ if (isset($_GET['username'])) {
     if ($conn->connect_error) {
         die("User not Logged in " . $conn->connect_error);
     }
-    $sql = "SELECT username FROM users WHERE id = $userId";
+    $sql = "SELECT username FROM tb_registration WHERE id = $User_Id";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
