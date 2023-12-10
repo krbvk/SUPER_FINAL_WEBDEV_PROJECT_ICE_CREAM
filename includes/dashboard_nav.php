@@ -15,16 +15,19 @@ if (isset($_GET['username'])) {
     if ($conn->connect_error) {
         die("User not Logged in " . $conn->connect_error);
     } else {
-        $stmt = $conn->prepare("SELECT * FROM tb_registration WHERE Username = ?");
+        $sql = "SELECT * FROM tb_registration WHERE username = ?";
+        $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $user);
         $stmt->execute();
-        $stmt_result = $stmt->get_result();
-        if ($stmt_result->num_rows > 0) {
-            $row = $stmt_result->fetch_assoc();
-            if ($isVerified){
-                $_SESSION["username"] = $row["username"];
-            }
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $_SESSION['username'] = $row["username"];
+    } else {
+        echo "0 results";
     }
+    $stmt->close();
+    $conn->close();
 }
 } 
 ?>
@@ -46,7 +49,7 @@ if (isset($_GET['username'])) {
                     <ul class="navbar-nav ms-auto">
                         <li li class="nav-item">
                             <a style="color: white
-                            ;">Welcome, <?php echo $row["username"]; ?></a>
+                            ;">Welcome, <?php echo $_SESSION['username']; ?></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link subActive" aria-current="page"
