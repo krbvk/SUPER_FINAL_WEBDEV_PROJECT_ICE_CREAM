@@ -28,7 +28,7 @@ if (isset($_GET['username']) && isset($_GET['password'])) {
 
             if ($isVerified) {
                 $_SESSION["User_ID"] = $row["User_ID"];
-                $_SESSION["username"] = $row["Username"];
+                $_SESSION["username"] = $row["username"];
                 $_SESSION["isAuthenticated"] = true;
 
                 header("Location: ../pages/dashboard_home.php");
