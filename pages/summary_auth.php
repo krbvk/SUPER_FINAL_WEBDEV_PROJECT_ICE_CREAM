@@ -12,12 +12,11 @@ $database = ltrim($dbparts['path'], '/');
 $errors = array();
 try {
     $conn = new mysqli($hostname, $username, $password, $database);
-
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $cashAmount = isset($_GET['cashAmount']) ? floatval($_GET['cashAmount']) : 0;
         $totalAmount = isset($_GET['totalAmount']) ? floatval($_GET['totalAmount']) : 0;
 
@@ -26,7 +25,7 @@ try {
             $productCount = count($_GET['product']);
 
             for ($i = 0; $i < $productCount; $i++) {
-                $productName = $_GET['product'][$i];
+                $productNames = $_GET['product'][$i];
                 $price = floatval($_GET['price'][$i]);
                 $quantity = intval($_GET['quantity'][$i]);
                 $total = floatval($_GET['total'][$i]);
@@ -37,14 +36,14 @@ try {
                     die("Error preparing statement: " . $conn->error);
                 }
 
-                $stmt->bind_param('ssdd', $productName, $price, $quantity, $total);
+                $stmt->bind_param('ssdd', $productNames, $price, $quantity, $total);
 
                 if (!$stmt->execute()) {
                     die("Error executing statement: " . $stmt->error);
                 }
 
                 $products[] = [
-                    'productName' => $productName,
+                    'productName' => $productNames,
                     'price' => $price,
                     'quantity' => $quantity,
                     'total' => $total,
