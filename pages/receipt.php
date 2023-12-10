@@ -33,50 +33,50 @@
                 <span id="title" style="color: black;">Atelier De Natsu</span>
             </div>
             <h1>Receipt</h1>
-            <table>
-                <tr>
-                    <td style="font-weight: bold;">Cash Amount inputted:&nbsp&nbsp</td>
-                    <td>............................................ ₱<?php echo $cashAmount; ?></td>
-                </tr>
-                <tr>
-                    <td style="font-weight: bold;">Total Amount:&nbsp&nbsp</td>
-                    <td>............................................ ₱<?php echo $totalAmount; ?></td>
-                </tr>
-                <?php
-                // Calculate and display change only if cash is greater than total
-                if ($cashAmount >= $totalAmount) {
-                    $changeAmount = $cashAmount - $totalAmount;
-                    echo '<tr>';
-                    echo '<td style="font-weight: bold;">Change Amount:&nbsp&nbsp</td>';
-                    echo '<td>............................................ ₱' . $changeAmount . '</td>';
-                    echo '</tr>';
-                }
-                ?>
+<table>
+    <tr>
+        <td style="font-weight: bold;">Cash Amount inputted:&nbsp&nbsp</td>
+        <td>............................................ ₱<?php echo number_format((float)$cashAmount, 2); ?></td>
+
+    </tr>
+    <tr>
+        <td style="font-weight: bold;">Total Amount:&nbsp&nbsp</td>
+        <td>............................................ ₱<?php echo number_format((float)$totalAmount, 2); ?></td>
+    </tr>
+    <?php
+    // Calculate and display change only if cash is greater than total
+    if (floatval($cashAmount) >= floatval($totalAmount)) {
+        $changeAmount = floatval($cashAmount) - floatval($totalAmount);
+        echo '<tr>';
+        echo '<td style="font-weight: bold;">Change Amount:&nbsp&nbsp</td>';
+      echo '<td>............................................ ₱' . number_format($changeAmount, 2) . '</td>';
+        echo '</tr>';
+    }
+    ?>
             </table>
 
-            <h2>Product Details:</h2> 
+            <h2>Product Details:</h2>
             <table>
                 <?php
 
-                if (!empty($productNames)) {
-                    for ($i = 0; $i < count($productNames); $i++) {
-
-                        echo '<tr>';
-                        echo '<th style="font-weight: bold;">Product:</th>';
-                        echo '<td> ' . $productNames[$i] . ' </td>';
-                        echo '<th style="font-weight: bold;">&nbsp&nbsp&nbspPrice: ₱ </td>';
-                        echo '<td>' . $prices[$i] . '</td>';
-                        echo '<th style="font-weight: bold;">&nbsp&nbsp&nbspQuantity:&nbsp</td>';
-                        echo '<td>' . $quantities[$i] . '</td>';
-                        echo '<th style="font-weight: bold;">&nbsp&nbsp&nbspTotal: </td>';
-                        echo '<td>.....................₱' . $totals[$i] . '</td>';
-                        echo '</tr>';
-                    }
-                } else {
-                    echo '<tr><td colspan="8">No product details available.</td></tr>';
-                }
-                ?>
-            </table>
+if (count($productNames) === count($prices) && count($prices) === count($quantities) && count($quantities) === count($totals)) {
+    for ($i = 0; $i < count($productNames); $i++) {
+        echo '<tr>';
+        echo '<th style="font-weight: bold;">Product:</th>';
+        echo '<td> ' . $productNames[$i] . ' </td>';
+        echo '<th style="font-weight: bold;">&nbsp&nbsp&nbspPrice: ₱ </td>';
+        echo '<td>' . $prices[$i] . '</td>';
+        echo '<th style="font-weight: bold;">&nbsp&nbsp&nbspQuantity:&nbsp</td>';
+        echo '<td>' . $quantities[$i] . '</td>';
+        echo '<th style="font-weight: bold;">&nbsp&nbsp&nbspTotal: </td>';
+        echo '<td>.....................₱' . $totals[$i] . '</td>';
+        echo '</tr>';
+    }
+} else {
+    echo '<tr><td colspan="8">Error: Inconsistent data. Please try again.</td></tr>';
+}
+?>
+</table>
             <?php
             date_default_timezone_set('Asia/Manila');
             ?>
