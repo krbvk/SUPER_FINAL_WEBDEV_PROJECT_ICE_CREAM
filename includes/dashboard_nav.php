@@ -22,7 +22,7 @@ if (isset($_GET['username'])) {
         if ($stmt_result->num_rows > 0) {
             $row = $stmt_result->fetch_assoc();
             if ($isVerified){
-                $_SESSION["username"] = $user["username"];
+                $_SESSION["username"] = $row["username"];
             }
     }
 }
@@ -46,7 +46,7 @@ if (isset($_GET['username'])) {
                     <ul class="navbar-nav ms-auto">
                         <li li class="nav-item">
                             <a style="color: white
-                            ;">Welcome,<?php echo $user["username"]; ?></a>
+                            ;">Welcome, <?php echo $row["username"]; ?></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link subActive" aria-current="page"
