@@ -14,18 +14,20 @@ if (isset($_GET['username'])) {
     $conn = new mysqli($hostname, $username, $password, $database);
     if ($conn->connect_error) {
         die("User not Logged in " . $conn->connect_error);
-    } else {
-        $stmt = $conn->prepare("SELECT * FROM tb_registration WHERE Username = ?");
-        $stmt->bind_param("s", $user);
-        $stmt->execute();
-        $stmt_result = $stmt->get_result();
-        if ($stmt_result->num_rows > 0) {
-            $row = $stmt_result->fetch_assoc();
-            if ($isVerified){
-                $_SESSION["username"] = $row["username"];
-            }
     }
-}
+    $sql = "SELECT username FROM users WHERE id = $userId";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        
+        while($row = $result->fetch_assoc()) {
+          echo "Welcome, " . $row["username"];
+        }
+      } else {
+        echo "0 results";
+      }
+      $conn->close();
+
 } 
 ?>
 <header>
