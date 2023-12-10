@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 $url = getenv('JAWSDB_URL');
 $dbparts = parse_url($url);
 
@@ -12,14 +12,15 @@ $errors = array();
 try {
     $conn = new mysqli($hostname, $username, $password, $database);
 
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        // Get the parameters from the URL
         $cashAmount = isset($_GET['cashAmount']) ? floatval($_GET['cashAmount']) : 0;
         $totalAmount = isset($_GET['totalAmount']) ? floatval($_GET['totalAmount']) : 0;
 
-        // Validate cash amount
         if ($cashAmount >= $totalAmount) {
-            // Get product details from the URL
             $products = [];
             $productCount = count($_GET['product']);
 
@@ -29,12 +30,18 @@ try {
                 $quantity = intval($_GET['quantity'][$i]);
                 $total = floatval($_GET['total'][$i]);
 
-                // Store product information in the database
                 $stmt = $conn->prepare("INSERT INTO tb_receipt (product_name, price, quantity, total) VALUES (?, ?, ?, ?)");
-                $stmt->bind_param('ssdd', $productName, $price, $quantity, $total);
-                $stmt->execute();
 
-                // Store product information in an array
+                if (!$stmt) {
+                    die("Error preparing statement: " . $conn->error);
+                }
+
+                $stmt->bind_param('ssdd', $productName, $price, $quantity, $total);
+
+                if (!$stmt->execute()) {
+                    die("Error executing statement: " . $stmt->error);
+                }
+
                 $products[] = [
                     'productName' => $productName,
                     'price' => $price,
@@ -51,5 +58,7 @@ try {
         echo "<p>Invalid request method. Please try again.</p>";
     }
 } catch (Exception $e) {
-    echo "Connection failed: " . $e->getMessage();
+    error_log("Connection failed: " . $e->getMessage(), 0);
+    echo "Connection failed. Please check the logs for details.";
 }
+?>

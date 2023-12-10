@@ -18,7 +18,7 @@
 
 <body>
 
-    <?php include 'navbar.php'; ?>
+    <?php include '../includes/dashboard_nav.php'; ?>
 
     <div class="main">
         <div class="page1">
