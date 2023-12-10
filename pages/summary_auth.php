@@ -26,9 +26,9 @@ try {
 
             for ($i = 0; $i < $productCount; $i++) {
                 $productNames = $_GET['product'][$i];
-                $price = floatval($_GET['price'][$i]);
-                $quantity = intval($_GET['quantity'][$i]);
-                $total = floatval($_GET['total'][$i]);
+                $prices = floatval($_GET['price'][$i]);
+                $quantities = intval($_GET['quantity'][$i]);
+                $totals = floatval($_GET['total'][$i]);
 
                 $stmt = $conn->prepare("INSERT INTO tb_receipt (product_name, price, quantity, total) VALUES (?, ?, ?, ?)");
 
@@ -36,7 +36,7 @@ try {
                     die("Error preparing statement: " . $conn->error);
                 }
 
-                $stmt->bind_param('ssdd', $productNames, $price, $quantity, $total);
+                $stmt->bind_param('ssii', $productNames, $prices, $quantities, $totals);
 
                 if (!$stmt->execute()) {
                     die("Error executing statement: " . $stmt->error);
@@ -44,9 +44,9 @@ try {
 
                 $products[] = [
                     'productName' => $productNames,
-                    'price' => $price,
-                    'quantity' => $quantity,
-                    'total' => $total,
+                    'price' => $prices,
+                    'quantity' => $quantities,
+                    'total' => $totals,
                 ];
             }
 
