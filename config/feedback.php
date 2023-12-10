@@ -1,24 +1,37 @@
 <?php
-//db = random_fb
-$conn = mysqli_connect("localhost", "root", "", "db_review");
-if (!$conn) {
-    die("Could not connect: " . mysqli_connect_error());
+session_start();
+
+function sanitizeInput($input)
+{
+    return htmlspecialchars(trim($input));
 }
 
-mysqli_select_db($conn, "db_review");
+$comment = sanitizeInput($_POST['comment']);
 
+$url = getenv('JAWSDB_URL');
+$dbparts = parse_url($url);
 
-// random_reviews table with column of comments
-$sql = "INSERT INTO random_reviews VALUES
+$hostname = $dbparts['host'];
+$username = $dbparts['user'];
+$password = $dbparts['pass'];
+$database = ltrim($dbparts['path'],'/');
 
-('$_POST[comments]')";
+$conn = new mysqli($hostname, $username, $password, $database);
 
-if (!mysqli_query($conn, $sql)) {
-    die('Error posting values: ' . mysqli_connect_error());
-}
-// SUCCESS
-else {
-    // Redirect back to the home page with errors
-    header("Location: ../pages_main/dashboard_home.php");
-    exit();
+if ($conn->connect_error) {
+    die("Connection Failed: " . $conn->connect_error);
+} else {
+    $stmt = $conn->prepare("INSERT INTO tb_feedbacks (comment) VALUES (?)");
+    $stmt->bind_param("s", $comment);
+    $execval = $stmt->execute();
+
+    if ($execval){
+        $_SESSION['feedback'] = true;
+        header("Location: ../pages/dashboard_home.php");
+        exit();
+    } else {
+        die('Error posting values: ');
+    }
+    $stmt->close();
+    $conn->close();
 }

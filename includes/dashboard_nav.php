@@ -1,11 +1,32 @@
 <?php
 session_start(); // Start the session
 
-if (isset($_SESSION['username'])) {
-    $user = $_SESSION['username'];
-} else {
-    $user = '';
+$url = getenv('JAWSDB_URL');
+$dbparts = parse_url($url);
+
+$hostname = $dbparts['host'];
+$username = $dbparts['user'];
+$password = $dbparts['pass'];
+$database = ltrim($dbparts['path'],'/');
+
+if (isset($_GET['username'])) {
+    $user = $_GET['username'];
+    $conn = new mysqli($hostname, $username, $password, $database);
+    if ($conn->connect_error) {
+        die("User not Logged in " . $conn->connect_error);
+    } else {
+        $stmt = $conn->prepare("SELECT * FROM tb_registration WHERE Username = ?");
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $stmt_result = $stmt->get_result();
+        if ($stmt_result->num_rows > 0) {
+            $row = $stmt_result->fetch_assoc();
+            if ($isVerified){
+                $_SESSION["username"] = $row["username"];
+            }
+    }
 }
+} 
 ?>
 <header>
     <div class="container-fluid">
@@ -17,18 +38,19 @@ if (isset($_SESSION['username'])) {
                         <span id="title">Atelier De Natsu</span>
                     </div>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li li class="nav-item">
                             <a style="color: white
-                            ;">Welcome, <?php echo $user; ?></a>
-
+                            ;">Welcome, <?php echo $row["username"]; ?></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link subActive" aria-current="page" href="../pages/dashboard_home.php">Home</a>
+                            <a class="nav-link subActive" aria-current="page"
+                                href="../pages/dashboard_home.php">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link subActive" href="../pages/dashboard_product.php">Product</a>
@@ -40,7 +62,6 @@ if (isset($_SESSION['username'])) {
                             <div class="dropdown">
                                 <button class="dropbtn">Menu <i class="fa fa-caret-down"></i></button>
                                 <div class="dropdown-content">
-                                    <a href="">Feedback</a>
                                     <a href="../config/log_out.php">Log out</a>
                                 </div>
                             </div>
@@ -52,14 +73,36 @@ if (isset($_SESSION['username'])) {
         </nav>
     </div>
 </header>
-
 <script>
-    const currentLocation = window.location.href;
-    const navLinks = document.querySelectorAll("nav a");
-
-    for (const link of navLinks) {
-        if (link.href === currentLocation) {
-            link.classList.add("active");
-        }
+// Function to handle the header's sticky behavior
+function handleStickyHeader() {
+    const header = document.querySelector("header");
+    if (window.scrollY > header.offsetHeight) {
+        header.classList.add("sticky");
+    } else {
+        header.classList.remove("sticky");
     }
+}
+
+// Listen for scroll events and update the header's sticky behavior
+window.addEventListener("scroll", handleStickyHeader);
+
+// Initial call to set the initial state based on page load
+handleStickyHeader();
+</script>
+<script>
+const currentLocation = window.location.href;
+const navLinks = document.querySelectorAll("nav a");
+
+for (const link of navLinks) {
+    if (link.href === currentLocation) {
+        link.classList.add("active");
+    }
+}
+
+function goToSummary() {
+    window.location.href = "../php/purchase_summary.php";
+
+
+}
 </script>

@@ -1,3 +1,6 @@
+body {
+    overflow-x: hidden;
+}
 /* ! Navigation */
 #title {
     font-family: "Irish Grover", cursive;
@@ -120,7 +123,6 @@ a:hover {
 
 /* body & footer */
 /* TODO BODY Styles */
-
 .main {
     display: flex;
     justify-content: center;
@@ -131,7 +133,6 @@ a:hover {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    width: 1700px;
     height: 1100px;
 }
 .containerfont {

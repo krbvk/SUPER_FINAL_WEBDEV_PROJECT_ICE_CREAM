@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in</title>
-    <title>Login</title>
     <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="../assets/images/favicon-16x16.png" type="image/png">
     <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" sizes="16x16">
@@ -26,17 +25,13 @@
                 <div class="right-side">
                     <img src="../assets/images/sign.svg" />
                     <h2 style="color: white; text-align: center">Log in</h2>
+                    <center>
+                        <p style="color: white;">FAILED LOG IN. Username or password is Incorrect.</p>
+                        <p><a href="../pages/login.php">Try to log in again Click Here...</a></p>
+                    </center>
 
-                    <form method="get" action="../pages/login_authentication.php">
-                        <label for="username" style="color: white">Username:</label>
-                        <input type="text" id="username" name="username" required />
-                        <label for="password" style="color: white">Password:</label>
-                        <input type="password" id="password" name="password" required />
-                        <button type="submit">Login</button>
-                        <p style="text-align: center">
-                            <a href="../pages/register.php">Don't have an account? sign up here</a>
-                        </p>
-                    </form>
+
+
                 </div>
             </div>
         </div>

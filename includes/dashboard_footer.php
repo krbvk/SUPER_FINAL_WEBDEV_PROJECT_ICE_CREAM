@@ -30,8 +30,8 @@
                 <h3>Quick Links</h3>
                 <ul class="list-unstyled">
                     <li><a href="../pages/dashboard_home.php">Home</a></li>
-                    <li><a href="../pages/dashboard_product.php">Products</a></li>
-
+                    <li><a href="../pages//dashboard_product.php">Products</a></li>
+                    <!-- Other quick links -->
                 </ul>
             </div>
             <div class="col-md-3 footer-column">

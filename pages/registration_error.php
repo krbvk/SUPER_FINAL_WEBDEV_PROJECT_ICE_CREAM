@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Error</title>
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../assets/images/favicon-16x16.png" type="image/png">
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" sizes="16x16">
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" sizes="32x32">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/home.css">
     <link rel="stylesheet" href="../assets/css/forms.css">
@@ -18,13 +22,17 @@
         <div class="main-form" style="padding-bottom: 20%;">
             <div class="container_form">
                 <div class="left-side">
-                    <img src="../assets/images/mine.svg" id="img_form" alt="Image" />
+                    <img src="../assets/images/mine.png" id="img_form" alt="Image" />
                 </div>
                 <div class="right-side">
                     <img src="../assets/images/sign.svg" />
-                    <h2>Registration Error</h2>
-                    <p><?php echo $_SESSION['registration_error'] ?? 'An unknown error occurred during registration.'; ?></p>
-                    <p><a href="../pages/register.php">Go back to registration page</a></p>
+                    <center>
+
+
+                        <p style="color: white;"><?php echo $_SESSION['registration_error'] ?? 'Password does not match confirm password. Pls try again'; ?></p>
+                        <p style="color: white;"><a href="../pages/register.php">Go back to registration page Click here...</a></p>
+                    </center>
+
                 </div>
             </div>
         </div>

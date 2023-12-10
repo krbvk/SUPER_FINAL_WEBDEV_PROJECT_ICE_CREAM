@@ -83,7 +83,7 @@
             if (cashAmount >= totalAmount) {
                 let cartItems = JSON.parse(sessionStorage.getItem('cartItems')) || [];
                 let params = cartItems.map(item => `product[]=${item.name}&price[]=${item.price}&quantity[]=${item.quantity}&total[]=${item.price * item.quantity}`).join('&');
-                let redirectUrl = `receipt.php?cashAmount=${cashAmount}&totalAmount=${totalAmount}&${params}`;
+                let redirectUrl = `dashboard_receipt.php?cashAmount=${cashAmount}&totalAmount=${totalAmount}&${params}`;
                 window.location.href = redirectUrl;
             } else {
                 alert("Insufficient cash. Please enter the correct amount.");
@@ -92,7 +92,7 @@
 
         function cancelPayment() {
             alert("Payment cancelled.");
-            window.location.href = 'products.php';
+            window.location.href = 'dashboard_product.php';
         }
 
         function getTotalAmount() {
