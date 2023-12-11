@@ -17,7 +17,7 @@
 
 <body>
     <?php
-    include '../includes/navbar.php';
+    include '../includes/dashboard_nav.php';
 
     $cashAmount = isset($_GET['cashAmount']) ? $_GET['cashAmount'] : '';
     $totalAmount = isset($_GET['totalAmount']) ? $_GET['totalAmount'] : '';
