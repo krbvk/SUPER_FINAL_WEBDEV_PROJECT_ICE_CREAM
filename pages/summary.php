@@ -19,7 +19,6 @@
 <body>
     <?php include '../includes/navbar.php'; ?>
     <div class="container">
-    <form method="POST" name="form" action="summary_auth.php">
         <h1>Summary</h1>
         <table class="table table-striped">
             <thead>
@@ -42,7 +41,6 @@
             <button onclick="cancelPayment()">Cancel</button>
         </div>
     </div>
-    </form>
     <?php include '../includes/footer.php'; ?>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
