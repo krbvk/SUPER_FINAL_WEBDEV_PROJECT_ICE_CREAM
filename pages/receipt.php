@@ -18,6 +18,13 @@
 <body>
     <?php
     include '../includes/navbar.php';
+
+    $cashAmount = isset($_GET['cashAmount']) ? $_GET['cashAmount'] : '';
+    $totalAmount = isset($_GET['totalAmount']) ? $_GET['totalAmount'] : '';
+    $productNames = isset($_GET['product']) ? $_GET['product'] : [];
+    $prices = isset($_GET['price']) ? $_GET['price'] : [];
+    $quantities = isset($_GET['quantity']) ? $_GET['quantity'] : [];
+    $totals = isset($_GET['total']) ? $_GET['total'] : [];
     ?>
     <div>
         <div class="container_receipt">
