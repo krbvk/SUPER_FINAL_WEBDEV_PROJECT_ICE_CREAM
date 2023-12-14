@@ -31,7 +31,7 @@ try {
                     die("Error preparing statement: " . $conn->error);
                 }
 
-                $stmt->bind_param('sfff', $productName, $price, $quantity, $total);
+                $stmt->bind_param('sddd', $productName, $price, $quantity, $total);
 
                 // Loop through products and execute the statement
                 foreach ($_POST['product_name'] as $index => $productName) {
