@@ -19,7 +19,7 @@
 <body>
     <?php include '../includes/navbar.php'; ?>
     <div class="container">
-    <form method ="GET" action="../pages/receipt.php">
+    <form method ="GET" action="../pages/summary_auth.php">
         <h1>Summary</h1>
         <table class="table table-striped">
             <thead>
