@@ -18,10 +18,10 @@ try {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (isset($_POST['cashAmount'], $_POST['totalAmount'], $_POST['product'])) {
-            $cashAmount = floatval($_POST['cashAmount']);
-            $totalAmount = floatval($_POST['totalAmount']);
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        if (isset($_GET['cashAmount'], $_GET['totalAmount'], $_GET['product'])) {
+            $cashAmount = floatval($_GET['cashAmount']);
+            $totalAmount = floatval($_GET['totalAmount']);
 
             if ($cashAmount >= $totalAmount) {
                 $products = [];
@@ -34,10 +34,10 @@ try {
                 $stmt->bind_param('sddd', $productName, $price, $quantity, $total);
 
                 // Loop through products and execute the statement
-                foreach ($_POST['product_name'] as $index => $productName) {
-                    $price = floatval($_POST['price'][$index]);
-                    $quantity = intval($_POST['quantity'][$index]);  
-                    $total = floatval($_POST['total'][$index]);
+                foreach ($_GET['product_name'] as $index => $productName) {
+                    $price = floatval($_GET['price'][$index]);
+                    $quantity = intval($_GET['quantity'][$index]);  
+                    $total = floatval($_GET['total'][$index]);
 
                     if (!$stmt->execute()) {
                         die("Error executing statement: " . $stmt->error);
