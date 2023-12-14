@@ -33,10 +33,10 @@ try {
                 $stmt->bind_param('sfff', $productName, $price, $quantity, $total);
 
                 // Loop through products and execute the statement
-                foreach ($_GET['product_name'] as $index => $productName) {
-                    $price = floatval($_GET['price'][$index]);
-                    $quantity = intval($_GET['quantity'][$index]);
-                    $total = floatval($_GET['total'][$index]);
+                foreach ($_POST['product_name'] as $index => $productName) {
+                    $price = floatval($_POST['price'][$index]);
+                    $quantity = intval($_POST['quantity'][$index]);  
+                    $total = floatval($_POST['total'][$index]);
 
                     if (!$stmt->execute()) {
                         die("Error executing statement: " . $stmt->error);
