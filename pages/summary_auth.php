@@ -9,6 +9,11 @@ $username = $dbparts['user'];
 $password = $dbparts['pass'];
 $database = ltrim($dbparts['path'], '/');
 
+$productName = sanitizeInput($_POST['product_name']);
+$price = sanitizeInput($_POST['price']);
+$quantity = sanitizeInput($POST['quantity']);
+$total = sanitizeInput($POST['total']);
+
 $errors = [];
 
 try {
