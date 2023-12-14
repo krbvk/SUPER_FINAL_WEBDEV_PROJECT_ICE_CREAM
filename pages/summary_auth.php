@@ -34,7 +34,7 @@ try {
                 $stmt->bind_param('sddd', $productName, $price, $quantity, $total);
 
                 // Loop through products and execute the statement
-                foreach ($_POST['product_name'] as $index => $productName) {
+                foreach ($_GET['product_name'] as $index => $productName) {
                     $price = floatval($_GET['price'][$index]);
                     $quantity = intval($_GET['quantity'][$index]);  
                     $total = floatval($_GET['total'][$index]);
