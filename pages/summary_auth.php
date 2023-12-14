@@ -20,7 +20,9 @@ try {
             $totalAmount = floatval($_GET['totalAmount']);
 
             if ($cashAmount >= $totalAmount) {
-                $stmt = $conn->prepare("INSERT INTO tb_receipt (product_name, price, quantity, total) VALUES (?, ?, ?, ?)");
+                $conn->autocommit(FALSE); // Start transaction
+
+                $stmt = $conn->prepare("INSERT INTO tbl_receipt (product_name, price, quantity, total) VALUES (?, ?, ?, ?)");
 
                 if (!$stmt) {
                     die("Error preparing statement: " . $conn->error);
@@ -34,9 +36,13 @@ try {
                     $total = floatval($_GET['total'][$index]);
 
                     if (!$stmt->execute()) {
+                        $conn->rollback(); // Rollback in case of failure
                         die("Error executing statement: " . $stmt->error);
                     }
                 }
+
+                $conn->commit(); // Commit the transaction
+
                 $productNames = $_GET['product'];
                 $prices = $_GET['price'];
                 $quantities = $_GET['quantity'];
@@ -53,6 +59,9 @@ try {
         echo "<p>Invalid request method. Please try again.</p>";
     }
 } catch (Exception $e) {
+    $conn->rollback(); // Rollback in case of exception
     error_log("Connection failed: " . $e->getMessage(), 0);
     echo "Connection failed. Please check the logs for details.";
+} finally {
+    $conn->close(); // Close the database connection
 }
