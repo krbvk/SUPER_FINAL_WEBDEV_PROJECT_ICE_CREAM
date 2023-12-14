@@ -19,6 +19,7 @@
 <body>
     <?php include '../includes/navbar.php'; ?>
     <div class="container">
+    <form method="post" name="form" action="summary_auth.php">
         <h1>Summary</h1>
         <table class="table table-striped">
             <thead>
@@ -31,6 +32,7 @@
             </thead>
             <tbody class="summaryList"></tbody>
         </table>
+    </form>
         <div class="totalPrice"></div>
         <div class="cashInput">
             <label for="cash">Enter Cash: ₱</label>
