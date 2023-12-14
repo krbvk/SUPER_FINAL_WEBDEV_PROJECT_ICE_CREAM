@@ -17,10 +17,10 @@ try {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        if (isset($_GET['cashAmount'], $_GET['totalAmount'], $_GET['product'])) {
-            $cashAmount = floatval($_GET['cashAmount']);
-            $totalAmount = floatval($_GET['totalAmount']);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_POST['cashAmount'], $_POST['totalAmount'], $_POST['product'])) {
+            $cashAmount = floatval($_POST['cashAmount']);
+            $totalAmount = floatval($_POST['totalAmount']);
 
             if ($cashAmount >= $totalAmount) {
                 $products = [];
