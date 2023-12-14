@@ -1,5 +1,4 @@
 <?php
-
 $url = getenv('JAWSDB_URL');
 $dbparts = parse_url($url);
 
@@ -7,8 +6,6 @@ $hostname = $dbparts['host'];
 $username = $dbparts['user'];
 $password = $dbparts['pass'];
 $database = ltrim($dbparts['path'], '/');
-
-$errors = [];
 
 try {
     $conn = new mysqli($hostname, $username, $password, $database);
@@ -23,16 +20,14 @@ try {
             $totalAmount = floatval($_GET['totalAmount']);
 
             if ($cashAmount >= $totalAmount) {
-                $products = [];
                 $stmt = $conn->prepare("INSERT INTO tb_receipt (product_name, price, quantity, total) VALUES (?, ?, ?, ?)");
 
                 if (!$stmt) {
                     die("Error preparing statement: " . $conn->error);
                 }
 
-                $stmt->bind_param('sdd', $productName, $price, $quantity, $total);
+                $stmt->bind_param('sddd', $productName, $price, $quantity, $total);
 
-                // Loop through products and execute the statement
                 foreach ($_GET['product'] as $index => $productName) {
                     $price = floatval($_GET['price'][$index]);
                     $quantity = intval($_GET['quantity'][$index]);
@@ -41,14 +36,11 @@ try {
                     if (!$stmt->execute()) {
                         die("Error executing statement: " . $stmt->error);
                     }
-
-                    $products[] = [
-                        'productName' => $productName,
-                        'price' => $price,
-                        'quantity' => $quantity,
-                        'total' => $total,
-                    ];
                 }
+                $productNames = $_GET['product'];
+                $prices = $_GET['price'];
+                $quantities = $_GET['quantity'];
+                $totals = $_GET['total'];
 
                 include 'receipt.php';
             } else {

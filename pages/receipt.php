@@ -18,13 +18,6 @@
 <body>
     <?php
     include '../includes/navbar.php';
-    
-    $cashAmount = isset($_GET['cashAmount']) ? $_GET['cashAmount'] : '';
-    $totalAmount = isset($_GET['totalAmount']) ? $_GET['totalAmount'] : '';
-    $productNames = isset($_GET['product']) ? $_GET['product'] : [];
-    $prices = isset($_GET['price']) ? $_GET['price'] : [];
-    $quantities = isset($_GET['quantity']) ? $_GET['quantity'] : [];
-    $totals = isset($_GET['total']) ? $_GET['total'] : [];
     ?>
     <div>
         <div class="container_receipt">
@@ -33,50 +26,50 @@
                 <span id="title" style="color: black;">Atelier De Natsu</span>
             </div>
             <h1>Receipt</h1>
-<table>
-    <tr>
-        <td style="font-weight: bold;">Cash Amount inputted:&nbsp&nbsp</td>
-        <td>............................................ ₱<?php echo number_format((float)$cashAmount, 2); ?></td>
+            <table>
+                <tr>
+                    <td style="font-weight: bold;">Cash Amount inputted:&nbsp&nbsp</td>
+                    <td>............................................ ₱<?php echo number_format((float)$cashAmount, 2); ?></td>
 
-    </tr>
-    <tr>
-        <td style="font-weight: bold;">Total Amount:&nbsp&nbsp</td>
-        <td>............................................ ₱<?php echo number_format((float)$totalAmount, 2); ?></td>
-    </tr>
-    <?php
-    // Calculate and display change only if cash is greater than total
-    if (floatval($cashAmount) >= floatval($totalAmount)) {
-        $changeAmount = floatval($cashAmount) - floatval($totalAmount);
-        echo '<tr>';
-        echo '<td style="font-weight: bold;">Change Amount:&nbsp&nbsp</td>';
-      echo '<td>............................................ ₱' . number_format($changeAmount, 2) . '</td>';
-        echo '</tr>';
-    }
-    ?>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">Total Amount:&nbsp&nbsp</td>
+                    <td>............................................ ₱<?php echo number_format((float)$totalAmount, 2); ?></td>
+                </tr>
+                <?php
+                // Calculate and display change only if cash is greater than total
+                if (floatval($cashAmount) >= floatval($totalAmount)) {
+                    $changeAmount = floatval($cashAmount) - floatval($totalAmount);
+                    echo '<tr>';
+                    echo '<td style="font-weight: bold;">Change Amount:&nbsp&nbsp</td>';
+                    echo '<td>............................................ ₱' . number_format($changeAmount, 2) . '</td>';
+                    echo '</tr>';
+                }
+                ?>
             </table>
 
             <h2>Product Details:</h2>
             <table>
                 <?php
 
-if (count($productNames) === count($prices) && count($prices) === count($quantities) && count($quantities) === count($totals)) {
-    for ($i = 0; $i < count($productNames); $i++) {
-        echo '<tr>';
-        echo '<th style="font-weight: bold;">Product:</th>';
-        echo '<td> ' . $productNames[$i] . ' </td>';
-        echo '<th style="font-weight: bold;">&nbsp&nbsp&nbspPrice: ₱ </td>';
-        echo '<td>' . $prices[$i] . '</td>';
-        echo '<th style="font-weight: bold;">&nbsp&nbsp&nbspQuantity:&nbsp</td>';
-        echo '<td>' . $quantities[$i] . '</td>';
-        echo '<th style="font-weight: bold;">&nbsp&nbsp&nbspTotal: </td>';
-        echo '<td>.....................₱' . $totals[$i] . '</td>';
-        echo '</tr>';
-    }
-} else {
-    echo '<tr><td colspan="8">Error: Inconsistent data. Please try again.</td></tr>';
-}
-?>
-</table>
+                if (count($productNames) === count($prices) && count($prices) === count($quantities) && count($quantities) === count($totals)) {
+                    for ($i = 0; $i < count($productNames); $i++) {
+                        echo '<tr>';
+                        echo '<th style="font-weight: bold;">Product:</th>';
+                        echo '<td> ' . $productNames[$i] . ' </td>';
+                        echo '<th style="font-weight: bold;">&nbsp&nbsp&nbspPrice: ₱ </td>';
+                        echo '<td>' . $prices[$i] . '</td>';
+                        echo '<th style="font-weight: bold;">&nbsp&nbsp&nbspQuantity:&nbsp</td>';
+                        echo '<td>' . $quantities[$i] . '</td>';
+                        echo '<th style="font-weight: bold;">&nbsp&nbsp&nbspTotal: </td>';
+                        echo '<td>.....................₱' . $totals[$i] . '</td>';
+                        echo '</tr>';
+                    }
+                } else {
+                    echo '<tr><td colspan="8">Error: Inconsistent data. Please try again.</td></tr>';
+                }
+                ?>
+            </table>
             <?php
             date_default_timezone_set('Asia/Manila');
             ?>
