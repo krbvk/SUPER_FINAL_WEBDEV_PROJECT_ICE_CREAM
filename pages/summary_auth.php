@@ -8,7 +8,8 @@ $username = $dbparts['user'];
 $password = $dbparts['pass'];
 $database = ltrim($dbparts['path'], '/');
 
-$errors = array();
+$errors = [];
+
 try {
     $conn = new mysqli($hostname, $username, $password, $database);
 
@@ -17,42 +18,44 @@ try {
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        $cashAmount = isset($_GET['cashAmount']) ? floatval($_GET['cashAmount']) : 0;
-        $totalAmount = isset($_GET['totalAmount']) ? floatval($_GET['totalAmount']) : 0;
+        if (isset($_GET['cashAmount'], $_GET['totalAmount'], $_GET['product'])) {
+            $cashAmount = floatval($_GET['cashAmount']);
+            $totalAmount = floatval($_GET['totalAmount']);
 
-        if ($cashAmount >= $totalAmount) {
-            $products = [];
-            $productCount = count($_GET['product']);
-
-            for ($i = 0; $i < $productCount; $i++) {
-                $productName = $_GET['product'][$i];
-                $price = floatval($_GET['price'][$i]);
-                $quantity = intval($_GET['quantity'][$i]);
-                $total = floatval($_GET['total'][$i]);
-
+            if ($cashAmount >= $totalAmount) {
+                $products = [];
                 $stmt = $conn->prepare("INSERT INTO tb_receipt (product_name, price, quantity, total) VALUES (?, ?, ?, ?)");
 
                 if (!$stmt) {
                     die("Error preparing statement: " . $conn->error);
                 }
 
-                $stmt->bind_param('ssdd', $productName, $price, $quantity, $total);
+                $stmt->bind_param('sdd', $productName, $price, $quantity, $total);
 
-                if (!$stmt->execute()) {
-                    die("Error executing statement: " . $stmt->error);
+                // Loop through products and execute the statement
+                foreach ($_GET['product'] as $index => $productName) {
+                    $price = floatval($_GET['price'][$index]);
+                    $quantity = intval($_GET['quantity'][$index]);
+                    $total = floatval($_GET['total'][$index]);
+
+                    if (!$stmt->execute()) {
+                        die("Error executing statement: " . $stmt->error);
+                    }
+
+                    $products[] = [
+                        'productName' => $productName,
+                        'price' => $price,
+                        'quantity' => $quantity,
+                        'total' => $total,
+                    ];
                 }
 
-                $products[] = [
-                    'productName' => $productName,
-                    'price' => $price,
-                    'quantity' => $quantity,
-                    'total' => $total,
-                ];
+                include 'receipt.php';
+            } else {
+                echo "<p>Insufficient cash. Please enter the correct amount.</p>";
             }
-
-            include 'receipt.php';
         } else {
-            echo "<p>Insufficient cash. Please enter the correct amount.</p>";
+            echo "<p>Invalid parameters in the GET request. Please try again.</p>";
         }
     } else {
         echo "<p>Invalid request method. Please try again.</p>";
@@ -61,4 +64,3 @@ try {
     error_log("Connection failed: " . $e->getMessage(), 0);
     echo "Connection failed. Please check the logs for details.";
 }
-?>
