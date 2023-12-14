@@ -32,7 +32,6 @@
             </thead>
             <tbody class="summaryList"></tbody>
         </table>
-    </form>
         <div class="totalPrice"></div>
         <div class="cashInput">
             <label for="cash">Enter Cash: ₱</label>
@@ -43,6 +42,7 @@
             <button onclick="cancelPayment()">Cancel</button>
         </div>
     </div>
+    </form>
     <?php include '../includes/footer.php'; ?>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
