@@ -16,7 +16,7 @@
 
 <body>
 
-    <?php include '../includes/navbar.php' ?>
+    <?php include '../includes/navbar.php'; ?>
 
     <div class="main">
         <div class="page1">

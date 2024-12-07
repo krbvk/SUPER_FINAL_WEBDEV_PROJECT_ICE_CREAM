@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
     <title>Login</title>
     <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="../assets/images/favicon-16x16.png" type="image/png">
